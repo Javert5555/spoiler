@@ -4,10 +4,10 @@ const spoiler = document.querySelector('#spoiler')
 let isSpoilerClosed = spoiler.matches('.closed')
 
 /**
- * Переключает видимость элемента "спойлер" при нажатии на кнопку.
+ * Switches the visibility of the "spoiler" element when the button is pressed.
  * @returns {void}
  */
-const toggleVisibility = () => {
+const btnToggleVisibility = () => {
   if (isSpoilerClosed) {
     spoiler.classList.remove('closed')
   } else {
@@ -16,10 +16,16 @@ const toggleVisibility = () => {
   isSpoilerClosed = !isSpoilerClosed
 }
 
-btn.addEventListener('click', toggleVisibility)
-
-document.addEventListener('keydown', (event) => {
+/**
+ * Makes the "spoiler" element invisible when the "Escape" key is pressed.
+ * @param {object} - event object.
+ * @returns {void}
+ */
+const escapeToggleVisibility = (event) => {
   if (event.key === 'Escape' && !isSpoilerClosed) {
-    toggleVisibility()
+    btnToggleVisibility()
   }
-})
+}
+
+btn.addEventListener('click', btnToggleVisibility)
+document.addEventListener('keydown', escapeToggleVisibility)
